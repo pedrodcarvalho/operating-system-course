@@ -5,25 +5,21 @@
 #include <time.h>
 #include <string.h>
 
-void imprimir_cabecalho()
-{
+void imprimir_cabecalho() {
     printf("+------+---------+-----------------+------------------+\n");
     printf("| Name | Process | Início do tempo | Término do tempo |\n");
     printf("+------+---------+-----------------+------------------+\n");
 }
 
-void imprimir_processo(int pid, char process_name[100])
-{
+void imprimir_processo(int pid, char process_name[100]) {
     if (strcmp(process_name, "Bubble") == 0) {
         printf("|%s| %7d |   %10ld ms |    %10ld ms |\n", process_name, pid, clock() * 1000 / CLOCKS_PER_SEC, (clock() + 2) * 1000 / CLOCKS_PER_SEC);
-    }
-    else {
+    } else {
         printf("|%s | %7d |   %10ld ms |    %10ld ms |\n", process_name, pid, clock() * 1000 / CLOCKS_PER_SEC, (clock() + 2) * 1000 / CLOCKS_PER_SEC);
     }
 }
 
-void merge(int arr[], int l, int m, int r)
-{
+void merge(int arr[], int l, int m, int r) {
     int i, j, k;
     int n1 = m - l + 1;
     int n2 = r - m;
@@ -47,8 +43,7 @@ void merge(int arr[], int l, int m, int r)
         if (L[i] <= R[j]) {
             arr[k] = L[i];
             i++;
-        }
-        else {
+        } else {
             arr[k] = R[j];
             j++;
         }
@@ -69,8 +64,7 @@ void merge(int arr[], int l, int m, int r)
     }
 }
 
-void merge_sort(int arr[], int l, int r)
-{
+void merge_sort(int arr[], int l, int r) {
     if (l < r) {
         int m = l + (r - l) / 2;
 
@@ -81,15 +75,13 @@ void merge_sort(int arr[], int l, int r)
     }
 }
 
-void swap(int *a, int *b)
-{
+void swap(int *a, int *b) {
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-int partition(int arr[], int low, int high)
-{
+int partition(int arr[], int low, int high) {
     int pivot = arr[high];
     int i = (low - 1);
     int j;
@@ -106,8 +98,7 @@ int partition(int arr[], int low, int high)
     return (i + 1);
 }
 
-void quick_sort(int arr[], int low, int high)
-{
+void quick_sort(int arr[], int low, int high) {
     if (low < high) {
         int pi = partition(arr, low, high);
 
@@ -116,8 +107,7 @@ void quick_sort(int arr[], int low, int high)
     }
 }
 
-void bubble_sort(int arr[], int num)
-{
+void bubble_sort(int arr[], int num) {
     int x, y, temp;
 
     x = 0;
@@ -139,8 +129,7 @@ void bubble_sort(int arr[], int num)
     }
 }
 
-int main()
-{
+int main() {
     int pid;
     int i, status;
     char process_name[3][100] = {"Merge", "Quick", "Bubble"};
@@ -161,20 +150,16 @@ int main()
         if (pid == -1) {
             printf("Erro ao criar processo filho.\n");
             exit(1);
-        }
-        else if (pid == 0) {
+        } else if (pid == 0) {
             sleep(2);
             printf("Processo filho %d concluído.\n", getpid());
             exit(0);
-        }
-        else {
+        } else {
             if (i == 0) {
                 merge_sort(arr, 0, 9999);
-            }
-            else if (i == 1) {
+            } else if (i == 1) {
                 quick_sort(arr, 0, 9999);
-            }
-            else if (i == 2) {
+            } else if (i == 2) {
                 bubble_sort(arr, 9999);
             }
 

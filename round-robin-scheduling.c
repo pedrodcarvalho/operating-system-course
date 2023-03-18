@@ -7,8 +7,7 @@ typedef struct {
     int tempo_restante;
 } Processo;
 
-void round_robin(Processo processos[], int num_processos)
-{
+void round_robin(Processo processos[], int num_processos) {
     int tempo_restante_total = 0;
     int tempo_atual = 0;
     int processos_terminados[5] = {0, 0, 0, 0, 0};
@@ -29,16 +28,14 @@ void round_robin(Processo processos[], int num_processos)
                 if (processos[i].tempo_restante > QUANTUM) {
                     tempo_atual += QUANTUM;
                     processos[i].tempo_restante -= QUANTUM;
-                }
-                else {
+                } else {
                     tempo_atual += processos[i].tempo_restante;
                     processos[i].tempo_restante = 0;
                 }
 
                 printf("\n|%d\t|%d\t|%d             |", processos[i].pid, tempo_atual, processos[i].tempo_restante);
                 printf("\n+-------+-------+--------------+");
-            }
-            else {
+            } else {
                 if (processos_terminados[i] == 0) {
                     printf("\n|Processo %d terminou           |", processos[i].pid);
                     printf("\n+-------+-------+--------------+");
@@ -62,8 +59,7 @@ void round_robin(Processo processos[], int num_processos)
     return;
 }
 
-int main()
-{
+int main() {
     Processo processos[5];
 
     for (int i = 0; i < 5; i++) {
