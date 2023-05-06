@@ -9,14 +9,6 @@ void banker(int n, int m, int existent[], int available[], int allocation[][m], 
         executed_processes[k] = 0; // Inicializa todos os processos como não executados
     }
 
-    int actual_process_need[n][m];
-
-    for (i = 0; i < n; i++) {
-        for (j = 0; j < m; j++) {
-            actual_process_need[i][j] = request[i][j] - allocation[i][j]; // Calcula a necessidade real de cada processo
-        }
-    }
-
     int x = 0;
 
     for (k = 0; k < 5; k++) {
@@ -25,7 +17,7 @@ void banker(int n, int m, int existent[], int available[], int allocation[][m], 
                 int is_executable = 1;
 
                 for (j = 0; j < m; j++) {
-                    if (actual_process_need[i][j] > available[j]) { // Verifica se o processo requisita mais recursos do que o disponível
+                    if (request[i][j] > available[j]) { // Verifica se o processo requisita mais recursos do que o disponível
                         is_executable = 0;
                         break;
                     }
